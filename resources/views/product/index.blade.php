@@ -20,7 +20,7 @@
                 <th class="px-4 py-2 border-b">Total Harga</th>
                 <th class="px-4 py-2 border-b">Stok</th>
                 <th class="px-4 py-2 border-b">Dibuat Pada</th>
-                <th class="px-4 py-2 border-b">Aksi</th>
+                <th class="px-4 py-2 border-b"></th>
             </tr>
             </thead>
             <tbody>

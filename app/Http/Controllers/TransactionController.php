@@ -28,8 +28,6 @@ class TransactionController extends Controller
         ]);
 
         $product = Product::findOrFail($request->product_id);
-
-        // Validasi stok cukup
         if ($product->stock < $request->quantity) {
             return back()->withErrors(['quantity' => 'Stok tidak mencukupi. Stok tersedia: ' . $product->stock]);
         }
@@ -37,18 +35,14 @@ class TransactionController extends Controller
         $unitPrice = $product->price;
         $totalPrice = $unitPrice * $request->quantity;
 
-        // Buat transaksi
         Transaction::create([
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
             'unit_price' => $unitPrice,
             'total_price' => $totalPrice
         ]);
-
-        // Kurangi stok produk
         $product->decrement('stock', $request->quantity);
 
-        // Update total_price produk
         $product->update([
             'total_price' => $product->price * $product->stock
         ]);
